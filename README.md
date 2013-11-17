@@ -17,19 +17,21 @@ Include `_grid.css` in your styles if you wish simply to use it out-of-the-box.
   ```
 
   ``` html
-  <div class="span-8">
-    <div class="span-2">span-2</div>
-    <div class="span-6 last">span-6</div>
-    <div class="span-4">span-4</div>
+  <div class="container">
+    <div class="span-8">
+      <div class="span-2">span-2</div>
+      <div class="span-6 last">span-6</div>
+      <div class="span-4">span-4</div>
+      <div class="span-4 last">span-4</div>
+    </div>
     <div class="span-4 last">span-4</div>
+      <div class="span-2">span-2</div>
+      <div class="span-2 last">span-2</div>
+      <div class="span-3">span-3</div>
+      <div class="span-1 last">span-1</div>
+    </div>
+    <div class="span-6">span-6</div>
+    <div class="span-6 last">span-6</div>
+    <div class="span-12"></div>
   </div>
-  <div class="span-4 last">span-4</div>
-    <div class="span-2">span-2</div>
-    <div class="span-2 last">span-2</div>
-    <div class="span-3">span-3</div>
-    <div class="span-1 last">span-1</div>
-  </div>
-  <div class="span-6">span-6</div>
-  <div class="span-6 last">span-6</div>
-  <div class="span-12"></div>
   ```
