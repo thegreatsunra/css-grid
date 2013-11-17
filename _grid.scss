@@ -1,0 +1,105 @@
+/* -------------------------------------------
+_grid.scss
+Copyright (c) 2008-2013 Dane Petersen
+------------------------------------------- */
+
+/* VARIABLES */
+/* ---------------------------------------- */
+$column_width: 60px;
+$gutter_width: 20px;
+$column_count: 12;
+$gutter_count: ($column_count - 1);
+
+$span_slug: "span";
+$append_slug: "append";
+$prepend_slug: "prepend";
+$push_slug: "push";
+$pull_slug: "pull";
+
+$container_width: ($column_width * $column_count) + ($gutter_width * $gutter_count);
+
+/* GENERAL LAYOUT */
+/* ---------------------------------------- */
+.container {
+  @include clearfix;
+  width: $container_width;
+  margin: 0 auto;
+  img, object, iframe {
+    max-width: 100%;
+  }
+}
+
+.border {
+  padding-right: ($gutter_width / 2) - 1;
+  margin-right: ($gutter_width / 2);
+  border-right: 1px solid #ddd;
+}
+
+.last {
+  margin-right: 0 !important;
+}
+
+/* GRID LAYOUT */
+/* ---------------------------------------- */
+
+// define styles for all spans
+// .span-1, .span-2, .span-3 ... {
+#{enumerate(".#{$span_slug}", 1, $column_count)} {
+  float: left;
+  margin-right: $gutter_width;
+}
+
+// define widths for each individual span
+@for $i from 1 through $column_count {
+  // .span-1 { ... }, .span-2 { ... }, span-3 { ... }
+  .#{$span_slug}-#{$i} {
+    width: ($column_width * $i) + ($gutter_width * ($i - 1));
+    // define styles specific to full-width span
+    @if $i == $column_count {
+      margin-right: 0;
+    }
+  }
+}
+
+// define styles for appends
+@for $i from 1 through ($column_count - 1) {
+  // .append-1 { ... }, .append-2 { ... }, .append-3 { ... }
+  .#{$append_slug}-#{$i} {
+    padding-right: ($column_width * $i) + ($gutter_width * $i);
+  }
+}
+
+// define styles for prepends
+@for $i from 1 through ($column_count - 1) {
+  // .prepend-1 { ... }, .prepend-2 { ... }, .prepend-3 { ... }
+  .#{$prepend_slug}-#{$i} {
+    padding-left: ($column_width * $i) + ($gutter_width * $i);
+  }
+}
+
+// define styles for all pulls
+// .pull-1, .pull-2, .pull-3 ... {
+#{enumerate(".#{$pull_slug}", 1, ($column_count - 1))} {
+  float: left;
+  position: relative;
+}
+@for $i from 1 through ($column_count - 1) {
+  // .pull-1 { ... }, .pull-2 { ... }, .pull-3 { ... }
+  .#{$pull_slug}-#{$i} {
+    margin-left: (-1 * (($column_width * $i) + ($gutter_width * $i)));
+  }
+}
+
+// define styles for all pushs
+// .push-1, .push-2, .push-3 ... {
+#{enumerate(".#{$push_slug}", 1, ($column_count - 1))} {
+  float: left;
+  position: relative;
+}
+@for $i from 1 through ($column_count - 1) {
+  // .push-1 { ... }, .push-2 { ... }, .push-3 { ... }
+  .#{$push_slug}-#{$i} {
+    margin-right: (-1 * (($column_width * $i) + ($gutter_width * $i)));
+    margin-left: ($column_width * $i) + ($gutter_width * $i);
+  }
+}
